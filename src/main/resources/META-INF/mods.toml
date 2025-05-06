@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+[[mods]]
+modId="rebyssal"
+version="1.16.5-0.1b"
+displayName="Re-Abyssal"
+logoFile="logo.png"
+credits="Thanks for this example mod goes to Java"
+authors="Love, Cheese and small house plants"
+description=''' '''
+
+[[dependencies.rebyssal]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.rebyssal]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,9 +1,9 @@
 package com.easynull.lethifer.core.items;
 
-import com.easynull.lethifer.client.render.PageScreen;
+import com.easynull.lethifer.api.Research;
+import com.easynull.lethifer.client.render.screen.PageScreen;
 import com.easynull.lethifer.core.LRComponents;
 import com.easynull.lethifer.utils.ResearchUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -28,13 +28,15 @@ public class SecretPage extends Item {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+        Research res = ResearchUtils.getResearch(stack.get(LRComponents.research));
+        if(!level.isClientSide) return InteractionResult.FAIL;
         if(stack.get(LRComponents.research).contains("full")){
             ResearchUtils.setStateAll(player, true);
-        } else if(!ResearchUtils.isUnlocked(player, ResearchUtils.getResearch(stack.get(LRComponents.research)))){
-            Minecraft.getInstance().setScreen(new PageScreen(ResearchUtils.getResearch(stack.get(LRComponents.research)), stack));
+            return InteractionResult.SUCCESS;
+        } else if(!ResearchUtils.isUnlocked(player, res)){
+            PageScreen.instance.open(res, stack);
+            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.FAIL;
     }
-
-
 }

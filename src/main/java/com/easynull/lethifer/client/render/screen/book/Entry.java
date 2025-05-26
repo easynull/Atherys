@@ -1,6 +1,7 @@
-package com.easynull.lethifer.client.render.book;
+package com.easynull.lethifer.client.render.screen.book;
 
 import com.easynull.lethifer.api.Research;
+import com.easynull.lethifer.api.LangLetherian;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.RenderUtils;
 import com.easynull.lethifer.utils.ResearchUtils;
@@ -13,20 +14,21 @@ import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.easynull.lethifer.client.render.book.BookScreen.curChap;
+import static com.easynull.lethifer.client.render.screen.book.BookScreen.curChap;
 
 public final class Entry implements Research {
-    public final String name, cipher;
+    public final String name;
     final Object icon;
     public final Chapter chapter;
+    public final String cipher;
     public final ArrayList<Page> pages;
     public final ArrayList<Entry> children;
     public final ArrayList<Item> items;
     public boolean unlocked;
 
-    public Entry(String name, String cipher, Object icon, Chapter chapter) {
+    public Entry(String name, Object icon, Chapter chapter) {
         this.name = name;
-        this.cipher = cipher;
+        this.cipher = "cipher." + name;
         this.icon = icon;
         this.chapter = chapter;
         this.pages = new ArrayList<>();
@@ -43,11 +45,10 @@ public final class Entry implements Research {
             RenderUtils.Transform tr = new RenderUtils.Transform(gg.pose());
             tr.start();
             tr.scale(pX + 22, pY + 9, 0.7f, 0.7f, 0);
-            RenderUtils.drawText(isUnlocked() ? Component.translatable("entry.lethifer." + name) : Component.translatable("entry.lethifer." + name).getString().replaceAll(".", "-"), gg, pX + 28, pY + 5, 0xFF7F2D1B);
+            RenderUtils.drawText(LangLetherian.translate(Component.translatable("entry." + name), isUnlocked()), gg, pX + 28, pY + 5, 0xFF7F2D1B);
             tr.stop();
             if (isUnlocked()) {
                 if (icon instanceof ItemLike i) RenderUtils.renderItemGUI(gg, i.asItem().getDefaultInstance(), pX + 5, pY + (left ? 1 : 2));
-//                else if (icon instanceof ResourceLocation loc) RenderUtils.drawTexture(loc, gg, pX + 5, pY + (left ? 1 : 2), 16);
             } else {
                 RenderUtils.drawTexture(bg, gg, pX + 7, pY + (left ? 3 : 4), 282, 32, 12, 12, 512, 512);
             }
@@ -70,7 +71,7 @@ public final class Entry implements Research {
 
     @Override
     public String getCipher() {
-        return cipher;
+        return Component.translatable(cipher).getString();
     }
 
     public Entry unlock(){
@@ -80,11 +81,6 @@ public final class Entry implements Research {
 
     public Entry addPages(Page... pages){
         this.pages.addAll(Arrays.asList(pages));
-        return this;
-    }
-
-    public Entry addChildren(Entry... entries){
-        children.addAll(Arrays.asList(entries));
         return this;
     }
 

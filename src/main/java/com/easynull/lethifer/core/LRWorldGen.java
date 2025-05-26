@@ -11,11 +11,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import static com.easynull.lethifer.Lethifer.ID;
 
 public final class LRWorldGen {
-    private static DeferredRegister<LootItemFunctionType<?>> lootFunctions = DeferredRegister.create(BuiltInRegistries.LOOT_FUNCTION_TYPE, ID);
+    private static DeferredRegister<LootItemFunctionType<?>> biomes = DeferredRegister.create(BuiltInRegistries.LOOT_FUNCTION_TYPE, ID);
 
-//    public static final DeferredHolder<LootItemFunctionType<?>, LootItemFunctionType<?>> researchRandomly = lootFunctions.register("research_randomly", ()-> new ResearchRandomlyFunc());
 
     public static void register(IEventBus bus){
-        lootFunctions.register(bus);
+        biomes.register(bus);
     }
 }

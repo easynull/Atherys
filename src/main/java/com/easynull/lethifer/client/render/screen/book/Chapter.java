@@ -1,29 +1,31 @@
-package com.easynull.lethifer.client.render.book;
+package com.easynull.lethifer.client.render.screen.book;
 
 import com.easynull.lethifer.api.Research;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.RenderUtils;
 import com.easynull.lethifer.utils.ResearchUtils;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.easynull.lethifer.client.render.book.BookScreen.curChap;
+import static com.easynull.lethifer.client.render.screen.book.BookScreen.curChap;
 
 public final class Chapter implements Research {
-    public final String name, cipher;
+    public final String name;
     final Object icon;
+    public final String cipher;
     public final ArrayList<Entry> children;
     public final ArrayList<ArrayList<Entry>> pages;
     public boolean unlocked;
     public final int index;
 
-    public Chapter(String name, String cipher, Object icon) {
+    public Chapter(String name, Object icon) {
         this.name = name;
-        this.cipher = cipher;
+        this.cipher = "cipher.lethifer." + name;
         this.icon = icon;
         this.children = new ArrayList<>();
         this.pages = new ArrayList<>();
@@ -39,7 +41,6 @@ public final class Chapter implements Research {
         RenderUtils.drawTexture(bg, gg, actualX - (isHover(pX, pY, mouseX, mouseY) || equals(curChap) ? 18 : 17), actualY, isHover(pX, pY, mouseX, mouseY) || equals(curChap) ? 304 : 282, index > 7 ? 0 : 16, 22, 16, 512, 512);
         if (isUnlocked()) {
             if (icon instanceof ItemLike i) RenderUtils.renderItemGUI(gg, i.asItem().getDefaultInstance(), actualX - (isHover(pX, pY, mouseX, mouseY) || equals(curChap) ? 13 : 12), actualY);
-//            else if (icon instanceof ResourceLocation loc) RenderUtils.drawTexture(loc, gg, actualX - 13, actualY + 3, 16);
         } else {
             RenderUtils.drawTexture(bg, gg, actualX - 10, actualY + 2, 282, 32, 12, 12, 512, 512);
         }
@@ -61,7 +62,7 @@ public final class Chapter implements Research {
 
     @Override
     public String getCipher() {
-        return cipher;
+        return Component.translatable(cipher).getString();
     }
 
     public Chapter unlock() {
@@ -70,10 +71,10 @@ public final class Chapter implements Research {
     }
 
     public void addChildren(Entry entry) {
-        List<Entry> lastPage = pages.get(pages.size() - 1);
+        List<Entry> lastPage = pages.getLast();
         if (lastPage.size() >= 7) {
             addPage();
-            lastPage = pages.get(pages.size() - 1);
+            lastPage = pages.getLast();
         }
         lastPage.add(entry);
     }

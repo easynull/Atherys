@@ -1,16 +1,13 @@
-package com.easynull.lethifer.client.render;
+package com.easynull.lethifer.client.render.screen;
 
 import com.easynull.lethifer.utils.RenderUtils;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
-
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public final class TextField extends AbstractWidget {
     private final Consumer<String> current;
@@ -24,13 +21,13 @@ public final class TextField extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    protected void renderWidget(GuiGraphics gg, int mouseX, int mouseY, float pTick) {
         String visibleText = font.plainSubstrByWidth(value, width - 8);
-        guiGraphics.drawString(font, visibleText, getX() + 4, getY() + (height - 8) / 2, 0xFFFFFF, false);
+        gg.drawString(font, visibleText, getX() + 4, getY() + (height - 8) / 2, 0xFFFFFF, false);
 
-        if (cursorTick / 6 % 2 == 0) {
+        if (cursorTick / 14 % 2 == 0) {
             int cursorX = getX() + 4 + font.width(value.substring(0, cursorPos));
-            guiGraphics.fill(cursorX, getY() + 3, cursorX + 1, getY() + height - 3, 0xFFE0E0E0);
+            gg.fill(cursorX, getY() + 3, cursorX + 1, getY() + height - 3, 0xFFE0E0E0);
         }
         cursorTick++;
     }

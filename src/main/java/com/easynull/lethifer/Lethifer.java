@@ -1,16 +1,15 @@
 package com.easynull.lethifer;
 
-import com.easynull.lethifer.client.render.book.Entry;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.core.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.font.FontSet;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 @Mod(Lethifer.ID)
 public final class Lethifer {
@@ -28,7 +27,7 @@ public final class Lethifer {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(()-> LRResearches.setupBook());
+        LRResearches.setupBook();
     }
 
     private void client(final FMLClientSetupEvent event){}

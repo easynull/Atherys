@@ -46,6 +46,7 @@ public final class RenderUtils {
         float green = (float) ((color >> 8) & 0xFF) / 255.0f;
         float blue = (float) (color & 0xFF) / 255.0f;
         float alpha = (float) ((color >> 24) & 0xFF) / 255.0f;
+        RenderSystem.setShader(RenderSystem.getShader());
         RenderSystem.setShaderColor(red, green, blue, alpha);
         method.run();
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
@@ -74,41 +75,6 @@ public final class RenderUtils {
 
         public void moved(float pX, float pY, float pZ) {
             ms.translate(pX, pY, pZ);
-        }
-    }
-
-    public static class Animator2D {
-        public final Transform tr;
-        public float ticks, mult;
-        public boolean isRun;
-
-        public Animator2D(Transform tr, float ticks, float mult) {
-            this.tr = tr;
-            this.ticks = (float) Math.pow(ticks, 0.8);
-            this.mult = mult;
-            this.isRun = false;
-        }
-
-        public Animator2D(Transform tr, float ticks) {
-            this(tr, ticks, 0.34f);
-        }
-
-        public void start() {
-            this.isRun = true;
-            this.ticks = Math.clamp(ticks * mult, 0, 1);
-            tr.start();
-        }
-
-        public void stop() {
-            this.isRun = false;
-            this.ticks = 0;
-            tr.stop();
-        }
-
-        public void extraStop(){
-            if(ticks >= 1){
-                stop();
-            }
         }
     }
 }

@@ -1,8 +1,7 @@
 package com.easynull.lethifer.core.items;
 
 import com.easynull.lethifer.api.NEnergy;
-import com.easynull.lethifer.client.render.book.BookScreen;
-import net.minecraft.client.Minecraft;
+import com.easynull.lethifer.client.render.screen.book.BookScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +22,7 @@ public final class Book extends Item implements NEnergy {
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        Minecraft.getInstance().setScreen(new BookScreen());
+        BookScreen.instance.open();
         return InteractionResult.SUCCESS;
     }
 

@@ -16,8 +16,7 @@
   "tooltip.lethifer.energy.current": "▶ Stored: %s/%s NE",
   "tooltip.lethifer.page": "§7The page vibrates slightly in your hands...",
 
-  "entry.lethifer.oresmod": "Ores",
-  "entry.lethifer.nature": "Nature",
-
-  "cipher.nature": "The plants will rot"
+  "entry.oresmod": "Ores",
+  "entry.nature": "Nature",
+  "cipher.nature": "Nature will be rot!"
 }

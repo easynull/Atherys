@@ -1,4 +1,4 @@
-package com.easynull.lethifer.client.render;
+package com.easynull.lethifer.client.render.screen;
 
 import com.easynull.lethifer.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -9,7 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 
 public abstract class LRScreen extends Screen {
-    public final Minecraft mc = RenderUtils.mc;
+    public final Minecraft mc = Minecraft.getInstance();
     public float ticks = 0;
     public final int bgWeight, bgHeight;
 
@@ -21,23 +21,21 @@ public abstract class LRScreen extends Screen {
 
     @Override
     public void render(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
-        if(mc == null) return;
         renderBackground(gg, mouseX, mouseY, pTicks);
-        RenderUtils.Animator2D anim = new RenderUtils.Animator2D(new RenderUtils.Transform(gg.pose()), ticks);
-        anim.start();
-        anim.tr.scale(width / 2f, height / 2f, anim.ticks, anim.ticks, 0);
+        RenderUtils.Transform tr = new RenderUtils.Transform(gg.pose());
+        tr.scale(width / 2f, height / 2f, ticks, ticks, 0);
         rendering(gg, mouseX, mouseY, pTicks);
         for (Renderable renderable : this.renderables) {
             renderable.render(gg, mouseX, mouseY, pTicks);
         }
-        anim.extraStop();
+        tr.stop();
     }
 
     public abstract void rendering(GuiGraphics gg, int mouseX, int mouseY, float pTicks);
 
     @Override
     public void tick() {
-        ticks = Mth.clamp(ticks + 0.45f, 0, 1);
+        ticks = (float) Mth.clamp(Math.pow(ticks + 0.4, 2.2d), 0, 1);
     }
 
     @Override

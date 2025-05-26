@@ -18,7 +18,7 @@ public abstract class LRHideInventory extends LRBlockEntity {
     public LRHideInventory(BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
         super(type, pos, state);
         inv = new SimpleContainer(slots);
-        inv.addListener(i -> setChanged());
+        inv.addListener(c -> setChanged());
     }
     public LRHideInventory(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         this(type, pos, state, 1);

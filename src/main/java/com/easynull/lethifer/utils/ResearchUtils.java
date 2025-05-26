@@ -2,9 +2,9 @@ package com.easynull.lethifer.utils;
 
 import com.easynull.lethifer.api.Research;
 import com.easynull.lethifer.api.ResearchStorage;
-import com.easynull.lethifer.client.render.book.Chapter;
+import com.easynull.lethifer.client.render.screen.book.Chapter;
 import com.easynull.lethifer.core.LRResearches;
-import com.easynull.lethifer.client.render.book.Entry;
+import com.easynull.lethifer.client.render.screen.book.Entry;
 import com.easynull.lethifer.core.LRAttachments;
 import net.minecraft.world.entity.player.Player;
 

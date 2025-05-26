@@ -1,8 +1,7 @@
 package com.easynull.lethifer.core;
 
-import com.easynull.lethifer.api.Research;
-import com.easynull.lethifer.client.render.book.Chapter;
-import com.easynull.lethifer.client.render.book.Entry;
+import com.easynull.lethifer.client.render.screen.book.Chapter;
+import com.easynull.lethifer.client.render.screen.book.Entry;
 import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
@@ -14,13 +13,13 @@ public final class LRResearches {
     public static Entry oresMod, nature;
 
     public static void setupBook() {
-        base = new Chapter("base", null, LRItemsBlocks.leimoire).unlock();
-        nulls = new Chapter("nulls", "$#%%@ %4#@@0#54$ 5$-$", Items.POLISHED_BLACKSTONE);
-        rituals = new Chapter("rituals", "$#0@$ --", Items.BOOK).unlock();
-        spells = new Chapter("spells", null, Items.STICK).unlock();
+        base = new Chapter("base", LRItemsBlocks.leimoire).unlock();
+        nulls = new Chapter("nulls", Items.POLISHED_BLACKSTONE);
+        rituals = new Chapter("rituals", Items.BOOK).unlock();
+        spells = new Chapter("spells", Items.STICK).unlock();
 
-        oresMod = new Entry("oresmod", null, Items.COAL_ORE, base).unlock();
-        nature = new Entry("nature", "$#0@ %4#754$ 2", Items.DARK_OAK_SAPLING, base).addEntryItems(LRItemsBlocks.darkwoodPlanks, LRItemsBlocks.leimoire);
+        oresMod = new Entry("oresmod", Items.COAL_ORE, base).unlock();
+        nature = new Entry("nature", Items.DARK_OAK_SAPLING, base).addEntryItems(LRItemsBlocks.teneviaLog, LRItemsBlocks.leimoire);
     }
     /** Max size chapters for book == 16 **/
 }

@@ -3,11 +3,11 @@
   "tab.deco": "LR: Декорации",
 
   "item.lethifer.leimoire": "Древний Лемуар",
-  "item.lethifer.darkwood_log": "Бревно Тенивии",
-  "item.lethifer.stripped_darkwood_log": "Обтесанное бревно Тенивии",
-  "item.lethifer.darkwood_planks": "Доски Тенивии",
-  "item.lethifer.darkwood_stairs": "Ступеньки из Тенивии",
-  "item.reabyssal.darkwood_slab": "Плита из Тенивии",
+  "item.lethifer.tenevia_log": "Бревно Тенивии",
+  "item.lethifer.stripped_tenevia_log": "Обтесанное бревно Тенивии",
+  "item.lethifer.tenevia_planks": "Доски Тенивии",
+  "item.lethifer.tenevia_stairs": "Ступеньки из Тенивии",
+  "item.reabyssal.tenevia_slab": "Плита из Тенивии",
   "item.lethifer.charge_obelisk": "Обелиск подзарядки",
   "item.lethifer.secret_page": "Секретная страница",
   "item.lethifer.linguisterium": "Лингвистериум",
@@ -16,8 +16,7 @@
   "tooltip.lethifer.energy.current": "▶ Хранится: %s/%s NE",
   "tooltip.lethifer.page": "§7Страница слегка вибрирует в ваших руках...",
 
-  "entry.lethifer.oresmod": "Руды",
-  "entry.lethifer.nature": "Природа",
-
-  "cipher.nature": "Растения будут гнить"
+  "entry.oresmod": "Руды",
+  "entry.nature": "Природа",
+  "cipher.nature": "Природа будет гнить!"
 }

@@ -1,19 +1,16 @@
-package com.easynull.lethifer.client.render.book;
+package com.easynull.lethifer.client.render.screen.book;
 
 import com.easynull.lethifer.Lethifer;
-import com.easynull.lethifer.client.render.LRScreen;
+import com.easynull.lethifer.client.render.screen.LRScreen;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.RenderUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.player.Player;
 import org.lwjgl.glfw.GLFW;
 
 public final class BookScreen extends LRScreen {
+    public static final BookScreen instance = new BookScreen();
     final ResourceLocation bg = Lethifer.locTo("gui/book/background");
     public static Chapter curChap;
     Entry curEntry;
@@ -21,9 +18,13 @@ public final class BookScreen extends LRScreen {
 
     public BookScreen() {
         super(282, 185);
+    }
+
+    public void open() {
+        ticks = 0;
         curEntry = null;
         curChap = LRResearches.base;
-        mc.player.playSound(SoundEvents.BOOK_PAGE_TURN, 1f, 1f);
+        mc.setScreen(this);
     }
 
     @Override

@@ -5,7 +5,7 @@ import net.minecraft.network.chat.Component;
 
 import java.util.*;
 
-public final class LangLetherian {
+public final class LetherianLang {
     private static final Map<Character, Character> letherianMap = new HashMap<>();
     private static final Map<String, List<Character>> languages = new HashMap<>();
 

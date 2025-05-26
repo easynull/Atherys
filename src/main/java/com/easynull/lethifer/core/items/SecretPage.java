@@ -1,8 +1,9 @@
 package com.easynull.lethifer.core.items;
 
-import com.easynull.lethifer.api.Research;
+import com.easynull.lethifer.api.capability.Research;
 import com.easynull.lethifer.client.render.screen.PageScreen;
 import com.easynull.lethifer.core.LRComponents;
+import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.ResearchUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -34,7 +35,8 @@ public class SecretPage extends Item {
             ResearchUtils.setStateAll(player, true);
             return InteractionResult.SUCCESS;
         } else if(!ResearchUtils.isUnlocked(player, res)){
-            PageScreen.instance.open(res, stack);
+            if(res.equals(LRResearches.letherianLang)) ResearchUtils.setState(player, res, true);
+            else PageScreen.instance.open(res, stack);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;

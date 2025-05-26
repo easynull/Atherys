@@ -1,4 +1,4 @@
-package com.easynull.lethifer.api;
+package com.easynull.lethifer.api.capability;
 
 public interface Research {
     boolean isUnlocked();

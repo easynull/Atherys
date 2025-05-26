@@ -1,7 +1,7 @@
 package com.easynull.lethifer.client.render.screen.book;
 
-import com.easynull.lethifer.api.Research;
-import com.easynull.lethifer.api.LangLetherian;
+import com.easynull.lethifer.api.capability.Research;
+import com.easynull.lethifer.api.LetherianLang;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.RenderUtils;
 import com.easynull.lethifer.utils.ResearchUtils;
@@ -45,7 +45,7 @@ public final class Entry implements Research {
             RenderUtils.Transform tr = new RenderUtils.Transform(gg.pose());
             tr.start();
             tr.scale(pX + 22, pY + 9, 0.7f, 0.7f, 0);
-            RenderUtils.drawText(LangLetherian.translate(Component.translatable("entry." + name), isUnlocked()), gg, pX + 28, pY + 5, 0xFF7F2D1B);
+            RenderUtils.drawText(LetherianLang.translate(Component.translatable("entry." + name), isUnlocked()), gg, pX + 28, pY + 5, 0xFF7F2D1B);
             tr.stop();
             if (isUnlocked()) {
                 if (icon instanceof ItemLike i) RenderUtils.renderItemGUI(gg, i.asItem().getDefaultInstance(), pX + 5, pY + (left ? 1 : 2));

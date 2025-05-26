@@ -1,8 +1,8 @@
 package com.easynull.lethifer.client.render.screen;
 
 import com.easynull.lethifer.Lethifer;
-import com.easynull.lethifer.api.LangLetherian;
-import com.easynull.lethifer.api.Research;
+import com.easynull.lethifer.api.LetherianLang;
+import com.easynull.lethifer.api.capability.Research;
 import com.easynull.lethifer.utils.ResearchUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -36,7 +36,7 @@ public final class PageScreen extends LRScreen {
 
     @Override
     public void rendering(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
-        gg.drawCenteredString(mc.font, LangLetherian.translate(entry.getCipher()), guiLeft() + 110, guiTop() - 50, 0x80000000);
+        gg.drawCenteredString(mc.font, LetherianLang.translate(entry.getCipher()), guiLeft() + 110, guiTop() - 50, 0x80000000);
     }
 
     @Override

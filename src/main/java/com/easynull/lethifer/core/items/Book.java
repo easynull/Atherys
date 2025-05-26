@@ -1,6 +1,6 @@
 package com.easynull.lethifer.core.items;
 
-import com.easynull.lethifer.api.NEnergy;
+import com.easynull.lethifer.api.essential.NEssential;
 import com.easynull.lethifer.client.render.screen.book.BookScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public final class Book extends Item implements NEnergy {
+public final class Book extends Item implements NEssential {
     final int maxEnergy;
     public Book(Properties prop, int maxEnergy) {
         super(prop);

@@ -1,6 +1,6 @@
 package com.easynull.lethifer.client.render.screen;
 
-import com.easynull.lethifer.api.LangLetherian;
+import com.easynull.lethifer.api.LetherianLang;
 import net.minecraft.client.gui.GuiGraphics;
 
 public final class LinguisteriumScreen extends LRScreen{
@@ -18,8 +18,8 @@ public final class LinguisteriumScreen extends LRScreen{
     @Override
     public void rendering(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
         int yOffset = 0;
-        for(char c : LangLetherian.getCurrentTranslate().keySet()){
-            gg.drawString(mc.font, String.format("%s -> %s", c, LangLetherian.getCurrentTranslate().get(c)), guiLeft() + 30, guiTop() - 115 + yOffset, 0x80000000, false);
+        for(char c : LetherianLang.getCurrentTranslate().keySet()){
+            gg.drawString(mc.font, String.format("%s -> %s", c, LetherianLang.getCurrentTranslate().get(c)), guiLeft() + 30, guiTop() - 115 + yOffset, 0x80000000, false);
             yOffset += 10;
         }
     }

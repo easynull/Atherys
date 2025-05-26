@@ -15,6 +15,7 @@
   "tooltip.lethifer.energy.max": "▶ Вместимость: %s",
   "tooltip.lethifer.energy.current": "▶ Хранится: %s/%s NE",
   "tooltip.lethifer.page": "§7Страница слегка вибрирует в ваших руках...",
+  "tooltip.lethifer.linguisterium": "§7Все что осталось от Древних...",
 
   "entry.oresmod": "Руды",
   "entry.nature": "Природа",

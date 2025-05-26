@@ -2,7 +2,7 @@ package com.easynull.lethifer.client.render.screen;
 
 import com.easynull.lethifer.Lethifer;
 import com.easynull.lethifer.api.LetherianLang;
-import com.easynull.lethifer.api.capability.Research;
+import com.easynull.lethifer.api.attachments.Research;
 import com.easynull.lethifer.utils.ResearchUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;

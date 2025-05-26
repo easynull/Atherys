@@ -1,6 +1,6 @@
 package com.easynull.lethifer.client.render.screen.book;
 
-import com.easynull.lethifer.api.capability.Research;
+import com.easynull.lethifer.api.attachments.Research;
 import com.easynull.lethifer.api.LetherianLang;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.RenderUtils;

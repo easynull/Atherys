@@ -61,8 +61,14 @@ public final class LetherianLang {
 
     public static String translate(String text) {
         final StringBuilder result = new StringBuilder();
-        for (char c : text.toUpperCase().toCharArray()) {
-            result.append(letherianMap.getOrDefault(c, 'ᛔ'));
+        char[] chars = text.toUpperCase().toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '§' && i + 1 < chars.length) {
+                result.append(chars[i]).append(chars[i + 1]);
+                i++;
+            } else {
+                result.append(letherianMap.getOrDefault(chars[i], 'ᛔ'));
+            }
         }
         return result.toString();
     }

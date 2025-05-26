@@ -36,7 +36,7 @@ public final class LRItemsBlocks {
     public static final DeferredBlock<Block> teneviaStairs = registerBlock("tenevia_stairs", prop -> new StairBlock(teneviaPlanks.get().defaultBlockState(), prop.ignitedByLava()), Blocks.BAMBOO_STAIRS);
     public static final DeferredBlock<Block> teneviaSlab = registerBlock("tenevia_slab", prop -> new Block(prop.ignitedByLava()), Blocks.BAMBOO_SLAB);
     public static final DeferredBlock<Block> chargeObelisk = registerBlock("charge_obelisk", prop -> new ChargeObelisk(prop, 5000), Blocks.BLACKSTONE);
-    public static final DeferredItem<Item> secPage = registerItem("secret_page", prop -> new SecretPage(prop.stacksTo(1).component(LRComponents.research, "nature")));
+    public static final DeferredItem<Item> secPage = registerItem("secret_page", prop -> new SecretPage(prop.stacksTo(1).component(LRComponents.research, "letherian_lang")));
     public static final DeferredItem<Item> linguisterium = registerItem("linguisterium", prop -> new Linguisterium(prop.stacksTo(1)));
 
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> factory, Block block) {

@@ -1,7 +1,7 @@
 package com.easynull.lethifer.utils;
 
-import com.easynull.lethifer.api.capability.Research;
-import com.easynull.lethifer.api.capability.ResearchStorage;
+import com.easynull.lethifer.api.attachments.Research;
+import com.easynull.lethifer.api.attachments.ResearchStorage;
 import com.easynull.lethifer.client.render.screen.book.Chapter;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.client.render.screen.book.Entry;

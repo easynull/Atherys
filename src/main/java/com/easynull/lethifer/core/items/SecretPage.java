@@ -1,6 +1,6 @@
 package com.easynull.lethifer.core.items;
 
-import com.easynull.lethifer.api.capability.Research;
+import com.easynull.lethifer.api.attachments.Research;
 import com.easynull.lethifer.client.render.screen.PageScreen;
 import com.easynull.lethifer.core.LRComponents;
 import com.easynull.lethifer.core.LRResearches;

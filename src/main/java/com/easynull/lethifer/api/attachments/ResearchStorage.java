@@ -1,4 +1,4 @@
-package com.easynull.lethifer.api.capability;
+package com.easynull.lethifer.api.attachments;
 
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.utils.ResearchUtils;

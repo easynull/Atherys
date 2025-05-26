@@ -1,6 +1,6 @@
 package com.easynull.lethifer.core;
 
-import com.easynull.lethifer.api.capability.ResearchStorage;
+import com.easynull.lethifer.api.attachments.ResearchStorage;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;

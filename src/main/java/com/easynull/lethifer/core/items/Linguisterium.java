@@ -2,6 +2,8 @@ package com.easynull.lethifer.core.items;
 
 import com.easynull.lethifer.client.render.screen.LinguisteriumScreen;
 import com.easynull.lethifer.client.render.screen.book.BookScreen;
+import com.easynull.lethifer.core.LRResearches;
+import com.easynull.lethifer.utils.ResearchUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -21,12 +23,12 @@ public final class Linguisterium extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
-        list.add(Component.translatable("tooltip.lethifer.linguisterium").withStyle(s -> s.withFont(ResourceLocation.fromNamespaceAndPath("lethifer", "runic"))));
+        list.add(Component.translatable("tooltip.lethifer.linguisterium"));
     }
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        LinguisteriumScreen.instance.open();
+        if(ResearchUtils.isUnlocked(player, LRResearches.letherianLang)) LinguisteriumScreen.instance.open();
         return InteractionResult.SUCCESS;
     }
 }

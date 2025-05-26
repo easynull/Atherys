@@ -16,7 +16,7 @@ public final class LRResearches {
         base = new Chapter("base", LRItemsBlocks.leimoire).unlock();
         forbiddenArchive = new Chapter("forbidden_archive", Items.POLISHED_BLACKSTONE);
         rituals = new Chapter("rituals", Items.BOOK).unlock();
-        spells = new Chapter("spells", Items.STICK).unlock();
+        spells = new Chapter("spells", Items.STICK);
 
         oresMod = new Entry("oresmod", Items.COAL_ORE, base).unlock();
         nature = new Entry("nature", Items.DARK_OAK_SAPLING, base).unlock();

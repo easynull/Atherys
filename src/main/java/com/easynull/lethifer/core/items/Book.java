@@ -1,6 +1,6 @@
 package com.easynull.lethifer.core.items;
 
-import com.easynull.lethifer.api.essential.NEssential;
+import com.easynull.lethifer.api.essential.LEssential;
 import com.easynull.lethifer.client.render.screen.book.BookScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -13,11 +13,11 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public final class Book extends Item implements NEssential {
-    final int maxEnergy;
-    public Book(Properties prop, int maxEnergy) {
+public final class Book extends Item implements LEssential {
+    final int maxEssential;
+    public Book(Properties prop, int maxEssential) {
         super(prop);
-        this.maxEnergy = maxEnergy;
+        this.maxEssential = maxEssential;
     }
 
     @Override
@@ -28,11 +28,11 @@ public final class Book extends Item implements NEssential {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
-        list.add(Component.translatable("tooltip.lethifer.energy.current", getEnergy(stack), maxEnergy));
+        list.add(Component.translatable("tooltip.lethifer.essential.current", getEssential(stack), maxEssential));
     }
 
     @Override
-    public int getMaxEnergy() {
-        return maxEnergy;
+    public int getMaxEssential() {
+        return maxEssential;
     }
 }

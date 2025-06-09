@@ -1,10 +1,8 @@
 package com.easynull.lethifer.client.render.screen.book;
 
-import com.easynull.lethifer.api.attachments.Research;
 import com.easynull.lethifer.api.LetherianLang;
-import com.easynull.lethifer.core.LRResearches;
+import com.easynull.lethifer.api.researches.Research;
 import com.easynull.lethifer.utils.RenderUtils;
-import com.easynull.lethifer.utils.ResearchUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,73 +12,71 @@ import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.easynull.lethifer.client.render.screen.book.BookScreen.curChap;
+import static com.easynull.lethifer.client.render.screen.book.BookScreen.currentChap;
 
-public final class Entry implements Research {
-    public final String name;
-    final Object icon;
+public final class Entry extends Research<Entry> {
     public final Chapter chapter;
-    public final String cipher;
+    public Difficulty difficulty;
     public final ArrayList<Page> pages;
-    public final ArrayList<Entry> children;
+    public Entry parent;
     public final ArrayList<Item> items;
-    public boolean unlocked;
+    final int pX, pY;
 
-    public Entry(String name, Object icon, Chapter chapter) {
-        this.name = name;
-        this.cipher = "cipher." + name;
-        this.icon = icon;
-        this.chapter = chapter;
-        this.pages = new ArrayList<>();
-        this.children = new ArrayList<>();
-        this.items = new ArrayList<>();
-        this.unlocked = false;
-        chapter.addChildren(this);
-        LRResearches.entries.add(this);
+    public Entry(String name, ItemLike icon, Chapter chapter, int pX, int pY) {
+        this(name, icon, chapter, Difficulty.basic, pX, pY);
     }
 
-    public void onRender(ResourceLocation bg, GuiGraphics gg, int pX, int pY, int mouseX, int mouseY, boolean left) {
-        if (chapter == curChap) {
-            RenderUtils.drawTexture(bg, gg, pX, pY, 0, left ? 185 : 203, 24, left ? 18 : 20, 512, 512);
+    public Entry(String name, ItemLike icon, Chapter chapter, Difficulty difficulty, int pX, int pY) {
+        super(name, icon, 18, 18);
+        this.chapter = chapter;
+        this.difficulty = difficulty;
+        this.pages = new ArrayList<>();
+        this.items = new ArrayList<>();
+        this.pX = pX;
+        this.pY = pY;
+        chapter.addChild(this);
+    }
+
+    @Override
+    public void onDraw(ResourceLocation bg, GuiGraphics gg, int pX, int pY, int mouseX, int mouseY) {
+        if(chapter == currentChap){
+            RenderUtils.drawTexture(bg, gg, pX, pY, 0, difficulty.v, width, height, 512, 512);
             RenderUtils.Transform tr = new RenderUtils.Transform(gg.pose());
             tr.start();
             tr.scale(pX + 22, pY + 9, 0.7f, 0.7f, 0);
-            RenderUtils.drawText(LetherianLang.translate(Component.translatable("entry." + name), isUnlocked()), gg, pX + 28, pY + 5, 0xFF7F2D1B);
+            RenderUtils.drawText(LetherianLang.translate(Component.literal(getName()), isUnlocked()), gg, pX + 20, pY + 5, 0xFF7F2D1B);
+            RenderUtils.drawTexture(bg, gg, pX + width, pY + 6, 18, 193, 99, 4, 512, 512);
             tr.stop();
             if (isUnlocked()) {
-                if (icon instanceof ItemLike i) RenderUtils.renderItemGUI(gg, i.asItem().getDefaultInstance(), pX + 5, pY + (left ? 1 : 2));
+                RenderUtils.renderItemGUI(gg, icon.asItem().getDefaultInstance(), pX + 5, pY + 2);
             } else {
-                RenderUtils.drawTexture(bg, gg, pX + 7, pY + (left ? 3 : 4), 282, 32, 12, 12, 512, 512);
+                RenderUtils.drawTexture(bg, gg, pX + 7, pY + 4, 282, 32, 12, 12, 512, 512);
             }
         }
     }
 
-    public boolean isHover(int pX, int pY, int mouseX, int mouseY){
-        return isUnlocked() && chapter == curChap && mouseX <= pX + 95 && mouseX >= pX && mouseY <= pY + 20 && mouseY >= pY;
+    @Override
+    public Research getParent() {
+        return parent;
     }
 
     @Override
-    public boolean isUnlocked(){
-        return ResearchUtils.isUnlocked(RenderUtils.mc.player, this) || unlocked;
+    public int getXOffset(int pX) {
+        return this.pX * 20 + pX;
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getCipher() {
-        return Component.translatable(cipher).getString();
-    }
-
-    public Entry unlock(){
-        this.unlocked = true;
-        return this;
+    public int getYOffset(int pY) {
+        return this.pY * 20 + pY;
     }
 
     public Entry addPages(Page... pages){
         this.pages.addAll(Arrays.asList(pages));
+        return this;
+    }
+
+    public Entry setParent(Entry parent){
+        this.parent = parent;
         return this;
     }
 
@@ -89,5 +85,22 @@ public final class Entry implements Research {
             this.items.add(o.asItem());
         }
         return this;
+    }
+
+    enum Difficulty {
+        locked(0),
+        basic(0),
+        arcana(16),
+        archaic(32),
+        forbidden(48);
+
+        public final int v;
+        Difficulty(int v){
+            this.v = v + 180;
+        }
+
+        public Component getTranslate(){
+            return Component.translatable("difficulty." + name());
+        }
     }
 }

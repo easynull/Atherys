@@ -2,22 +2,45 @@
   "tab.main": "LR: Main",
   "tab.deco": "LR: Decorations",
 
-  "item.lethifer.leimoire": "Ancient Leimoire",
+  "item.lethifer.grimoire": "Primal Grimoire",
   "item.lethifer.tenevia_log": "Log of Tenevia",
   "item.lethifer.stripped_tenevia_log": "Stripped log of Tenevia",
   "item.lethifer.tenevia_planks": "Planks of Tenevia",
   "item.lethifer.tenevia_stairs": "Stairs of Tenevia",
-  "item.reabyssal.tenevia_slab": "Slab of Tenevia",
+  "item.lethifer.tenevia_slab": "Slab of Tenevia",
   "item.lethifer.charge_obelisk": "Charge obelisk",
-  "item.lethifer.secret_page": "Secret page",
+  "item.lethifer.ancient_page": "Ancient page",
   "item.lethifer.linguisterium": "Linguisterium",
+  "item.lethifer.umbrilite_ore": "Umbrilite ore",
+  "item.lethifer.umbrilite_crystal": "Umbrilite crystal seed",
+  "block.lethifer.umbrilite_crystal": "Umbrilite crystal",
+  "item.lethifer.umbrilite_dust": "Umbrilite dust",
+  "item.lethifer.runic_spring": "Runic spring",
+  "block.lethifer.runic_spring": "Runic spring",
 
-  "tooltip.lethifer.energy.max": "▶ Storage: %s",
-  "tooltip.lethifer.energy.current": "▶ Stored: %s/%s NE",
-  "tooltip.lethifer.page": "§7The page vibrates slightly in your hands...",
+  "tooltip.lethifer.essential.max": "▶ Storage: %s LE",
+  "tooltip.lethifer.essential.current": "▶ Stored: %s/%s LE",
+  "tooltip.lethifer.busy": " (Busy)",
   "tooltip.lethifer.linguisterium": "§7All that remains of the Ancients...",
+  "message.lethifer.research.unlock": "★ Entry %s successfully decrypted!",
 
+  "difficulty.locked": "Sealed Knowledge",
+  "difficulty.basic": "Basic Knowledge",
+  "difficulty.arcana": "Arcana Knowledge",
+  "difficulty.archaic": "Archaic Exploration",
+  "difficulty.forbidden": "Forbidden Gnosis",
+
+  "entry.empty": "§7The runes have been erased, but they might still be useful...",
   "entry.oresmod": "Ores",
   "entry.nature": "Nature",
-  "cipher.nature": "Nature will be rot!"
+  "entry.letherian_lang": "Langue of Ancients",
+
+  "entry.leterum_essential": "Essential of Dark madness",
+  "entry.cipher.leterum_essential": "He who embraces the darkness will become a bridge for the Shadow Awakening",
+
+  "entry.first_leterum_source": "The First Source",
+  "entry.cipher.first_leterum_source": "The Source... The Stone that absorbed all the darkness and cries of forgotten worlds, until the Dawn",
+
+  "entry.runic_spring": "Runic spring",
+  "entry.cipher.runic_spring": "Ti Pidor"
 }

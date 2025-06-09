@@ -1,6 +1,7 @@
 package com.easynull.lethifer.core.blocks;
 
 import com.easynull.lethifer.core.blocks.entities.LRHideInventory;
+import com.easynull.lethifer.core.blocks.entities.TickableBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -10,13 +11,30 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
-public abstract class LRBlock extends Block {
-    public LRBlock(Properties p_49795_) {
-        super(p_49795_);
+public abstract class LRBlock extends Block implements EntityBlock {
+    final BlockEntityType.BlockEntitySupplier be;
+
+    public LRBlock(Properties properties, BlockEntityType.BlockEntitySupplier be) {
+        super(properties);
+        this.be = be;
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return be.create(pos, state);
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return TickableBE.getTicker();
     }
 
     @Override
@@ -34,8 +52,7 @@ public abstract class LRBlock extends Block {
                     level.addFreshEntity(item);
                 }
                 return InteractionResult.SUCCESS;
-            } else
-                return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+            }
         }
         return InteractionResult.CONSUME;
     }

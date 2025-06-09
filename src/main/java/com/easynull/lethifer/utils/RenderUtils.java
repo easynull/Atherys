@@ -41,14 +41,14 @@ public final class RenderUtils {
         gg.renderItem(stack, x, y);
     }
 
-    public static void rePaint(int color, Runnable method) {
-        float red = (float) ((color >> 16) & 0xFF) / 255.0f;
-        float green = (float) ((color >> 8) & 0xFF) / 255.0f;
-        float blue = (float) (color & 0xFF) / 255.0f;
-        float alpha = (float) ((color >> 24) & 0xFF) / 255.0f;
-        RenderSystem.setShader(RenderSystem.getShader());
-        RenderSystem.setShaderColor(red, green, blue, alpha);
-        method.run();
+    public static void rePaint(int color, Runnable drawingMethod) {
+        float a = ((color >> 24) & 0xFF) / 255f;
+        float r = ((color >> 16) & 0xFF) / 255f;
+        float g = ((color >> 8)  & 0xFF) / 255f;
+        float b = (color & 0xFF) / 255f;
+        RenderSystem.enableDepthTest();
+        RenderSystem.setShaderColor(r, g, b, a);
+        drawingMethod.run();
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
     }
 

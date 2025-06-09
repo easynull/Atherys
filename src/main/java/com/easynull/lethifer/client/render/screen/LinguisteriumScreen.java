@@ -19,7 +19,7 @@ public final class LinguisteriumScreen extends LRScreen{
     public void rendering(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
         int yOffset = 0;
         for(char c : LetherianLang.getCurrentTranslate().keySet()){
-            gg.drawString(mc.font, String.format("%s -> %s", c, LetherianLang.getCurrentTranslate().get(c)), guiLeft() + 30, guiTop() - 115 + yOffset, 0x80000000, false);
+            gg.drawString(mc.font, String.format("%s -> %s", LetherianLang.getCurrentTranslate().get(c), c), guiLeft() + 30, guiTop() - 115 + yOffset, 0x80000000, false);
             yOffset += 10;
         }
     }

@@ -6,53 +6,51 @@ import net.minecraft.network.chat.Component;
 import java.util.*;
 
 public final class LetherianLang {
-    private static final Map<Character, Character> letherianMap = new HashMap<>();
+    private static final Map<List<Character>, Character> letherianMap = new HashMap<>();
     private static final Map<String, List<Character>> languages = new HashMap<>();
 
     static {
-        putTranslation('ᚱ', 'A', 'А');
-        putTranslation('ᛝ', 'B', 'Б');
-        putTranslation('ᛟ', 'C', 'С', 'Ц');
-        putTranslation('ᛠ', 'D', 'Д');
-        putTranslation('ᛡ', 'E', 'Е', 'Э', 'Ё');
-        putTranslation('ᛢ', 'F', 'Ф');
-        putTranslation('ᛣ', 'G', 'Г');
-        putTranslation('ᛤ', 'H', 'Х');
-        putTranslation('ᛥ', 'I', 'И', 'Й');
-        putTranslation('ᛦ', 'J', 'Ж');
-        putTranslation('ᛨ', 'K', 'К');
-        putTranslation('ᛩ', 'L', 'Л');
-        putTranslation('ᛪ', 'M', 'М');
-        putTranslation('ᛉ', 'N', 'Н');
-        putTranslation('᛬', 'O', 'О');
-        putTranslation('᛭', 'P', 'П');
-        putTranslation('ᛮ', 'Q', 'Я');
-        putTranslation('ᛯ', 'R', 'Р');
-        putTranslation('ᚸ', 'S', 'Ш', 'Щ');
-        putTranslation('ᛱ', 'T', 'Т');
-        putTranslation('ᛲ', 'U', 'У', 'Ю');
-        putTranslation('ᛳ', 'V', 'В');
-        putTranslation('ᛴ', 'W', 'Ъ', 'Ч');
-        putTranslation('ᛵ', 'X', 'Ь');
-        putTranslation('ᛶ', 'Y', 'Ы');
-        putTranslation('ᛷ', 'Z', 'З');
-        putTranslation('ᛈ', ' ');
-        putTranslation('ᚼ', '!');
-        putTranslation('ᚿ', ',');
-        putTranslation('ᛛ', '.');
-        putTranslation('ᛙ', '?');
-        putTranslation('ᛆ', '-');
-        putTranslation('ᛇ', ':');
+        putTranslation('ᚱ', List.of('A', 'А'));
+        putTranslation('ᛝ', List.of('B', 'Б'));
+        putTranslation('ᛟ', List.of('C', 'С', 'Ц'));
+        putTranslation('ᛠ', List.of('D', 'Д'));
+        putTranslation('ᛡ', List.of('E', 'Е', 'Э', 'Ё'));
+        putTranslation('ᛢ', List.of('F', 'Ф'));
+        putTranslation('ᛣ', List.of('G', 'Г'));
+        putTranslation('ᛤ', List.of('H', 'Х'));
+        putTranslation('ᛥ', List.of('I', 'И', 'Й'));
+        putTranslation('ᛦ', List.of('J', 'Ж'));
+        putTranslation('ᛨ', List.of('K', 'К'));
+        putTranslation('ᛩ', List.of('L', 'Л'));
+        putTranslation('ᛪ', List.of('M', 'М'));
+        putTranslation('ᛉ', List.of('N', 'Н'));
+        putTranslation('᛬', List.of('O', 'О'));
+        putTranslation('᛭', List.of('P', 'П'));
+        putTranslation('ᛮ', List.of('Q', 'Я'));
+        putTranslation('ᛯ', List.of('R', 'Р'));
+        putTranslation('ᚸ', List.of('S', 'Ш', 'Щ'));
+        putTranslation('ᛱ', List.of('T', 'Т'));
+        putTranslation('ᛲ', List.of('U', 'У', 'Ю'));
+        putTranslation('ᛳ', List.of('V', 'В'));
+        putTranslation('ᛴ', List.of('W', 'Ъ', 'Ч'));
+        putTranslation('ᛵ', List.of('X', 'Ь'));
+        putTranslation('ᛶ', List.of('Y', 'Ы'));
+        putTranslation('ᛷ', List.of('Z', 'З'));
+        putTranslation('ᛈ', List.of(' '));
+        putTranslation('ᚼ', List.of('!'));
+        putTranslation('ᚿ', List.of(','));
+        putTranslation('ᛛ', List.of('.'));
+        putTranslation('ᛙ', List.of('?'));
+        putTranslation('ᛔ', List.of('-'));
+        putTranslation('ᛇ', List.of(':'));
 
         putSymbols("en", List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'));
         putSymbols("ru", List.of('А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'));
         putSymbols("uk", List.of('А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ю', 'Я'));
     }
 
-    private static void putTranslation(char letherianChar, char... symbols) {
-        for (char c : symbols) {
-            letherianMap.put(c, letherianChar);
-        }
+    private static void putTranslation(char letherianChar, List<Character> list) {
+        letherianMap.put(list, letherianChar);
     }
 
     private static void putSymbols(String lang, List<Character> symbols) {
@@ -60,14 +58,24 @@ public final class LetherianLang {
     }
 
     public static String translate(String text) {
-        final StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         char[] chars = text.toUpperCase().toCharArray();
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == '§' && i + 1 < chars.length) {
                 result.append(chars[i]).append(chars[i + 1]);
                 i++;
             } else {
-                result.append(letherianMap.getOrDefault(chars[i], 'ᛔ'));
+                boolean found = false;
+                for (Map.Entry<List<Character>, Character> entry : letherianMap.entrySet()) {
+                    if (entry.getKey().contains(chars[i])) {
+                        result.append(entry.getValue());
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    result.append('ᛆ');
+                }
             }
         }
         return result.toString();
@@ -78,14 +86,34 @@ public final class LetherianLang {
     }
 
     public static Map<Character, Character> getCurrentTranslate() {
-        final String cLang = Minecraft.getInstance().getLanguageManager().getSelected().split("_")[0];
+        String langCode = Minecraft.getInstance().getLanguageManager().getSelected().split("_")[0];
+        if(languages.get(langCode) == null) langCode = "en";
+        List<Character> langChars = languages.get(langCode);
         Map<Character, Character> translation = new HashMap<>();
-        List<Character> langChars = languages.get(cLang);
-        if(langChars != null) {
-            for (char lc : langChars) {
-                translation.put(lc, letherianMap.get(lc));
+        for (Map.Entry<List<Character>, Character> entry : letherianMap.entrySet()) {
+            char rune = entry.getValue();
+            List<Character> symbolGroup = entry.getKey();
+            for (char symbol : symbolGroup) {
+                if (langChars != null && langChars.contains(symbol)) {
+                    translation.put(symbol, rune);
+                }
             }
         }
         return translation;
+    }
+
+    public static void onRandomize() {
+        List<List<Character>> allSymbols = new ArrayList<>(letherianMap.keySet());
+        List<Character> allRunes = new ArrayList<>(new HashSet<>(letherianMap.values()));
+        Collections.shuffle(allRunes);
+
+        Map<List<Character>, Character> newMap = new HashMap<>();
+        for (int i = 0; i < allSymbols.size(); i++) {
+            List<Character> symbolGroup = allSymbols.get(i);
+            Character assignedRune = allRunes.get(i % allRunes.size());
+            newMap.put(symbolGroup, assignedRune);
+        }
+        letherianMap.clear();
+        letherianMap.putAll(newMap);
     }
 }

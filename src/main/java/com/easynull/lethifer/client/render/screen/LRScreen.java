@@ -23,6 +23,7 @@ public abstract class LRScreen extends Screen {
     public void render(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
         renderBackground(gg, mouseX, mouseY, pTicks);
         RenderUtils.Transform tr = new RenderUtils.Transform(gg.pose());
+        tr.moved(0, 200 - ticks * 200, 0);
         tr.scale(width / 2f, height / 2f, ticks, ticks, 0);
         rendering(gg, mouseX, mouseY, pTicks);
         for (Renderable renderable : this.renderables) {

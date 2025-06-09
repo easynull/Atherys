@@ -1,17 +1,16 @@
 package com.easynull.lethifer.core.blocks.entities;
 
-import com.easynull.lethifer.api.essential.NEssential;
+import com.easynull.lethifer.api.essential.LEssential;
 import com.easynull.lethifer.core.LRBlockEntities;
 import com.easynull.lethifer.utils.EnergyUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ChargeObelisk extends LRHideInventory implements NEssential, Tickable {
-    int energy;
-    public ChargeObelisk(BlockPos pos, BlockState state) {
+public class ChargeObeliskBE extends LRHideInventory implements LEssential, TickableBE {
+    int essential;
+    public ChargeObeliskBE(BlockPos pos, BlockState state) {
         super(LRBlockEntities.chargeObelisks.get(), pos, state);
-        energy = 5000;
     }
 
     @Override
@@ -23,11 +22,11 @@ public class ChargeObelisk extends LRHideInventory implements NEssential, Tickab
 
     @Override
     protected void putNBT(CompoundTag nbt) {
-        nbt.putInt("ne", energy);
+        nbt.putInt("le", essential);
     }
 
     @Override
     protected void getNBT(CompoundTag nbt) {
-        energy = nbt.getInt("ne");
+        essential = nbt.getInt("le");
     }
 }

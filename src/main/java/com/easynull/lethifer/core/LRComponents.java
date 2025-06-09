@@ -15,11 +15,7 @@ import static com.easynull.lethifer.Lethifer.ID;
 public final class LRComponents {
     public static final DeferredRegister.DataComponents components = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, ID);
 
-    public static Supplier<DataComponentType<NBTComponent>> nbt = components.registerComponentType("nbt", builder -> builder.persistent(NBTComponent.codec).networkSynchronized(ByteBufCodecs.fromCodec(NBTComponent.codec)));
-    public static Supplier<DataComponentType<Integer>> essential = components.registerComponentType("ne", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+    public static Supplier<DataComponentType<CompoundTag>> nbt = components.registerComponentType("nbt", builder -> builder.persistent(CompoundTag.CODEC).networkSynchronized(ByteBufCodecs.fromCodec(CompoundTag.CODEC)));
+    public static Supplier<DataComponentType<Integer>> essential = components.registerComponentType("le", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
     public static Supplier<DataComponentType<String>> research = components.registerComponentType("research", builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.fromCodec(Codec.STRING)));
-
-    public record NBTComponent(CompoundTag nbt){
-        public static final Codec<NBTComponent> codec = RecordCodecBuilder.create(instance -> instance.group(CompoundTag.CODEC.fieldOf("nbt").forGetter(NBTComponent::nbt)).apply(instance, NBTComponent::new));
-    }
 }

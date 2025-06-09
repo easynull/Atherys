@@ -1,7 +1,9 @@
 package com.easynull.lethifer;
 
+import com.easynull.lethifer.api.LetherianLang;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.core.*;
+import com.easynull.lethifer.core.packets.LRPacketsHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.font.FontSet;
@@ -19,18 +21,21 @@ public final class Lethifer {
         LRComponents.components.register(bus);
         LRItemsBlocks.register(bus);
         LRBlockEntities.bes.register(bus);
-        LRAttachments.attachments.register(bus);
         LRWorldGen.register(bus);
+        LRAttachments.attachments.register(bus);
 
         bus.addListener(this::setup);
         bus.addListener(this::client);
+        bus.register(new LRPacketsHandler());
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         LRResearches.setupBook();
     }
 
-    private void client(final FMLClientSetupEvent event){}
+    private void client(final FMLClientSetupEvent event){
+        event.enqueueWork(LetherianLang::onRandomize);
+    }
 
     public static ResourceLocation locTo(String file){
         return ResourceLocation.fromNamespaceAndPath(ID, String.format("textures/%s.png", file));

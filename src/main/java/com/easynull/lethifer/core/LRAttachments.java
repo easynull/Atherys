@@ -1,6 +1,7 @@
 package com.easynull.lethifer.core;
 
 import com.easynull.lethifer.api.researches.ResearchSerializable;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;

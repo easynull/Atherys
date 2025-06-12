@@ -15,7 +15,7 @@ import static com.easynull.lethifer.client.render.screen.book.BookScreen.current
 
 public final class Chapter extends Research<Chapter> {
     public final HashSet<Entry> children;
-    private List<ArrayList<Entry>> pages;
+    public List<ArrayList<Entry>> pages;
     public final int index;
 
     public Chapter(String name, ItemLike icon) {

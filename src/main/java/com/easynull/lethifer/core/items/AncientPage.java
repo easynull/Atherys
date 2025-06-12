@@ -32,10 +32,15 @@ public class AncientPage extends Item {
         ItemStack stack = player.getItemInHand(hand);
         if (stack.get(LRComponents.research).contains("empty")) return InteractionResult.FAIL;
         Research res = ResearchUtils.getResearch(stack.get(LRComponents.research));
-        if (!ResearchUtils.parentIsUnlocked(player, res)) return InteractionResult.FAIL;
-        if (!ResearchUtils.isUnlocked(player, res) && player instanceof ServerPlayer sp) {
-            if (res.equals(LRResearches.letherianLang)) ResearchUtils.setState(sp, res, true);
-            else PageScreen.instance.open(res, stack, sp);
+        if (!ResearchUtils.isUnlockedParent(player, res)) return InteractionResult.FAIL;
+        if (!res.isUnlocked()) {
+            if(ResearchUtils.getResearch("letherian_lang").isUnlocked()){
+                PageScreen.instance.open(res, stack, player);
+            }
+            if (res.equals(LRResearches.letherianLang)){
+                ResearchUtils.setState(player, res, true);
+                stack.shrink(1);
+            }
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;

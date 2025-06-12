@@ -1,12 +1,14 @@
 package com.easynull.lethifer.client.render.screen;
 
 import com.easynull.lethifer.utils.RenderUtils;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class LRScreen extends Screen {
     public final Minecraft mc = Minecraft.getInstance();
@@ -20,15 +22,12 @@ public abstract class LRScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
+    public void render(@NotNull GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
         renderBackground(gg, mouseX, mouseY, pTicks);
         RenderUtils.Transform tr = new RenderUtils.Transform(gg.pose());
         tr.moved(0, 200 - ticks * 200, 0);
         tr.scale(width / 2f, height / 2f, ticks, ticks, 0);
         rendering(gg, mouseX, mouseY, pTicks);
-        for (Renderable renderable : this.renderables) {
-            renderable.render(gg, mouseX, mouseY, pTicks);
-        }
         tr.stop();
     }
 

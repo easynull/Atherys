@@ -3,10 +3,6 @@ package com.easynull.lethifer;
 import com.easynull.lethifer.api.LetherianLang;
 import com.easynull.lethifer.core.LRResearches;
 import com.easynull.lethifer.core.*;
-import com.easynull.lethifer.core.packets.LRPacketsHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.font.FontSet;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -26,7 +22,6 @@ public final class Lethifer {
 
         bus.addListener(this::setup);
         bus.addListener(this::client);
-        bus.register(new LRPacketsHandler());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

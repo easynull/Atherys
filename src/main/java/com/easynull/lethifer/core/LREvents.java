@@ -1,30 +1,17 @@
 package com.easynull.lethifer.core;
 
 import com.easynull.lethifer.api.LetherianLang;
-import com.easynull.lethifer.client.render.screen.book.Chapter;
-import com.easynull.lethifer.client.render.screen.book.Entry;
-import com.easynull.lethifer.core.packets.SyncResearchPacket;
-import net.minecraft.core.component.DataComponents;
+import com.easynull.lethifer.core.commands.ResearchCommands;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.JsonCodecProvider;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handlers.ClientPayloadHandler;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
-import net.neoforged.neoforge.network.handling.IPayloadHandler;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 @EventBusSubscriber(modid = "lethifer")
 public final class LREvents {
@@ -44,5 +31,10 @@ public final class LREvents {
             event.getToolTip().addAll(lastTooltips.get(stack));
             lastTooltips.remove(stack);
         }
+    }
+
+    @SubscribeEvent
+    private static void registerCommands(RegisterCommandsEvent event){
+        ResearchCommands.register(event.getDispatcher());
     }
 }

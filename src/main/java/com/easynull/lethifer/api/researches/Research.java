@@ -16,7 +16,7 @@ public abstract class Research<O extends Research<O>> {
     final String id, cipher;
     public final int width, height;
     public final ItemLike icon;
-    public boolean primal;
+    public boolean primal, unlocked;
 
     protected Research(String id, ItemLike icon, int width, int height){
         this.id = id;
@@ -46,8 +46,11 @@ public abstract class Research<O extends Research<O>> {
     }
 
     public boolean isUnlocked() {
-        if (mc.player == null) return true;
-        return ResearchUtils.isUnlocked(mc.player, this);
+        return unlocked;
+    }
+
+    public void setState(boolean unlock) {
+        unlocked = unlock;
     }
 
     public O primal() {

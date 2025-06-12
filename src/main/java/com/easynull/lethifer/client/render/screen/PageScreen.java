@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.lwjgl.glfw.GLFW;
 
@@ -18,13 +19,13 @@ public final class PageScreen extends LRScreen {
     public String current = "";
     Research entry;
     ItemStack stack;
-    ServerPlayer player;
+    Player player;
 
     public PageScreen() {
         super(232, 196);
     }
 
-    public void open(Research entry, ItemStack stack, ServerPlayer player) {
+    public void open(Research entry, ItemStack stack, Player player) {
         ticks = 0;
         this.entry = entry;
         this.stack = stack;
@@ -46,7 +47,6 @@ public final class PageScreen extends LRScreen {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (current.equals(entry.getCipher()) && keyCode == GLFW.GLFW_KEY_ENTER) {
-            if(player == null) return false;
             ResearchUtils.setState(player, entry, true);
             stack.shrink(1);
             player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1f, 1f);

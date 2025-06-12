@@ -23,12 +23,18 @@
   "tooltip.lethifer.busy": " (Busy)",
   "tooltip.lethifer.linguisterium": "§7All that remains of the Ancients...",
   "message.lethifer.research.unlock": "★ Entry %s successfully decrypted!",
+  "message.lethifer.research.lock": "★ Entry %s successfully locked!",
 
   "difficulty.locked": "Sealed Knowledge",
   "difficulty.basic": "Basic Knowledge",
   "difficulty.arcana": "Arcana Knowledge",
   "difficulty.archaic": "Archaic Exploration",
   "difficulty.forbidden": "Forbidden Gnosis",
+
+  "chapter.basic": "Basic Chronicles",
+  "chapter.forbidden_archive": "Forbidden Archive",
+  "chapter.rituals": "Ancient Rituals",
+  "chapter.spells": "Spells",
 
   "entry.empty": "§7The runes have been erased, but they might still be useful...",
   "entry.oresmod": "Ores",
@@ -42,5 +48,5 @@
   "entry.cipher.first_leterum_source": "The Source... The Stone that absorbed all the darkness and cries of forgotten worlds, until the Dawn",
 
   "entry.runic_spring": "Runic spring",
-  "entry.cipher.runic_spring": "Ti Pidor"
+  "entry.cipher.runic_spring": " "
 }

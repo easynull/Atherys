@@ -22,24 +22,24 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
         }
     }
 
-    public boolean isUnlocked(Research research) {
-        return unResearches.contains(research);
-    }
-
     public void setUnlock(Research research) {
         unResearches.add(research);
+        research.setState(true);
     }
 
     public void setUnlockAll() {
         unResearches.addAll(LRResearches.researchById.values());
+        LRResearches.researchById.values().stream().filter(r -> !r.unlocked).forEach(this::setUnlock);
     }
 
     public void setLock(Research research) {
         unResearches.remove(research);
+        research.setState(false);
     }
 
     public void setLockAll() {
         unResearches.removeIf(research -> !research.primal);
+        LRResearches.researchById.values().stream().filter(r -> !r.primal).forEach(this::setLock);
     }
 
     @Override
@@ -50,7 +50,6 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
         }
         CompoundTag nbt = new CompoundTag();
         nbt.put("unlocked", unlocked);
-        System.out.print("Saved: " + nbt);
         return nbt;
     }
 
@@ -66,6 +65,5 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
                 }
             }
         }
-        System.out.print("Writed: " + nbt);
     }
 }

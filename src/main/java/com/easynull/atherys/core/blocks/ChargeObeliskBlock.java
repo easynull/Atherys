@@ -2,6 +2,7 @@ package com.easynull.atherys.core.blocks;
 
 import com.easynull.atherys.core.ASComponents;
 import com.easynull.atherys.core.blocks.entities.ChargeObeliskBE;
+import com.mw.nullcore.core.blocks.SaveDataBlock;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -10,7 +11,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-public class ChargeObeliskBlock extends LRSavedBlock {
+public class ChargeObeliskBlock extends SaveDataBlock {
     final int maxEnergy;
     public ChargeObeliskBlock(Properties properties, int maxEnergy) {
         super(properties, ChargeObeliskBE::new);

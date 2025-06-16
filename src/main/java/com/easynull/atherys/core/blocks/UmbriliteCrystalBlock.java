@@ -2,6 +2,7 @@ package com.easynull.atherys.core.blocks;
 
 import com.easynull.atherys.core.ASItemsBlocks;
 import com.easynull.atherys.core.blocks.entities.UmbriliteCrystalBE;
+import com.mw.nullcore.core.blocks.BaseEntityBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -19,7 +20,7 @@ import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
-public class UmbriliteCrystalBlock extends LRBlock{
+public class UmbriliteCrystalBlock extends BaseEntityBlock {
     public static final IntegerProperty age = IntegerProperty.create("age", 0, 8), erosion = IntegerProperty.create("erosion", 0, 4);
 
     public UmbriliteCrystalBlock(Properties properties) {

@@ -56,6 +56,9 @@ modrinth {
     gameVersions = ["1.21.4"]
     loaders = ["neoforge"]
     changelog = rootProject.file("changelog.md").text
+    dependencies {
+        optional.version "NullCore", "${nullcore_version}"
+    }
 }
 
 tasks.withType(ProcessResources).configureEach {

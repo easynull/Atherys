@@ -1,7 +1,7 @@
 {
   "entries": [
-    "lethifer:injected/minecraft/archaeology/desert_pyramid",
-    "lethifer:injected/minecraft/chests/ancient_city"
+    "atherys:injected/minecraft/archaeology/desert_pyramid",
+    "atherys:injected/minecraft/chests/ancient_city"
   ],
   "replace": false
 }

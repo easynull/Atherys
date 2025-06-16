@@ -50,6 +50,17 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('/*.gradle*','/gradle-wrapper.properties') }}
+      - name: Set up libs directory
+        run: |
+          mkdir -p libs
+          chmod -R 755 libs
+
+      - name: Download dependencies
+        uses: actions/download-artifact@v3
+        with:
+            name: project-libs
+            path: libs/
+        if: contains(github.event.pull_request.labels.*.name, 'needs-libs')
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3

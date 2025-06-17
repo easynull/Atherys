@@ -11,7 +11,13 @@
 
 <p align="center">
   <a href="https://modrinth.com/mod/atherys">
-    <img src="https://img.shields.io/badge/Atherys (Modrinth)-349a46?style=for-the-badge&logo=modrinth&logoColor=000000&labelColor=FFFFFF" /></a>
+    <img src="https://img.shields.io/badge/-Atherys (Modrinth)-349a46?style=for-the-badge&logo=modrinth&logoColor=000000&labelColor=FFFFFF" /></a>
   <a href="https://modrinth.com/mod/nullcore">
-    <img src="https://img.shields.io/badge/-NullCore%20(Modrinth)-349a46?style=for-the-badge&logo=modrinth&logoColor=000000&labelColor=FFFFFF" /></a>
+    <img src="https://img.shields.io/badge/-NullCore (Modrinth)-349a46?style=for-the-badge&logo=modrinth&logoColor=000000&labelColor=FFFFFF" /></a>
+</p>
+<p align="center">
+  <a href="https://www.curseforge.com/minecraft/mc-mods/atherys">
+    <img src="https://img.shields.io/badge/-Atherys (Curseforge)-d48526?style=for-the-badge&logo=curseforge&logoColor=000000&labelColor=FFFFFF" /></a>
+  <a href="https://www.curseforge.com/minecraft/mc-mods/nullcore">
+    <img src="https://img.shields.io/badge/-NullCore (Curseforge)-d48526?style=for-the-badge&logo=curseforge&logoColor=000000&labelColor=FFFFFF" /></a>  <a href="https://modrinth.com/mod/nullcore">
 </p>

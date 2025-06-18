@@ -17,9 +17,7 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
     public Set<Research> unResearches = new HashSet<>();
 
     public ResearchSerializable() {
-        for (Research research : ASResearches.researchById.values()) {
-            if (research.primal) setUnlock(research);
-        }
+        ASResearches.researchById.values().stream().filter(r -> r.primal).forEach(this::setUnlock);
     }
 
     public void setUnlock(Research research) {

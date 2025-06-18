@@ -1,8 +1,8 @@
 package com.easynull.atherys.core.blocks;
 
-import com.easynull.atherys.core.ASComponents;
 import com.easynull.atherys.core.blocks.entities.ChargeObeliskBE;
 import com.mw.nullcore.core.blocks.SaveDataBlock;
+import com.mw.nullcore.core.components.NullComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -20,6 +20,6 @@ public class ChargeObeliskBlock extends SaveDataBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tooltip.atherys.essential.current", stack.getOrDefault(ASComponents.nbt, new CompoundTag()).getInt("are"), maxEnergy));
+        list.add(Component.translatable("tooltip.atherys.essential.current", stack.getOrDefault(NullComponents.nbt, new CompoundTag()).getInt("are"), maxEnergy));
     }
 }

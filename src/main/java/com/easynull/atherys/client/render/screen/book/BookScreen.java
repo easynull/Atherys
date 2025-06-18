@@ -4,13 +4,14 @@ import com.easynull.atherys.Atherys;
 import com.easynull.atherys.client.render.screen.LRScreen;
 import com.easynull.atherys.core.ASResearches;
 import com.easynull.atherys.utils.RenderUtils;
+import com.mw.nullcore.core.render.NullScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import org.lwjgl.glfw.GLFW;
 
-public final class BookScreen extends LRScreen {
+public final class BookScreen extends NullScreen {
     public static final BookScreen instance = new BookScreen();
     final ResourceLocation bg = Atherys.locTo("gui/book/background");
     public static Chapter currentChap;
@@ -28,7 +29,7 @@ public final class BookScreen extends LRScreen {
     }
 
     @Override
-    public void rendering(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
+    public void draw(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
         RenderUtils.drawTexture(bg, gg, guiLeft(), guiTop(), 0, 0, bgWeight, bgHeight, 512, 512);
         renderTurning(gg, mouseX, mouseY);
         if (currentEntry != null) return;

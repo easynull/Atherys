@@ -57,6 +57,7 @@ modrinth {
     loaders = ["neoforge"]
     changelog = rootProject.file("changelog.md").text
     dependencies {
+        required.project "NullCore"
         optional.version "NullCore", "${nullcore_version}"
     }
 }

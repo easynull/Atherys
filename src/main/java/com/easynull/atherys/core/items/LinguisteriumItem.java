@@ -21,7 +21,7 @@ public final class LinguisteriumItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
-        list.add(Component.translatable("tooltip.lethifer.linguisterium"));
+        list.add(Component.translatable("tooltip.atherys.linguisterium"));
     }
 
     @Override

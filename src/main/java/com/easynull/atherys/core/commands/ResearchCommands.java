@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ResearchCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("lresearch").requires(source -> source.hasPermission(2))
+        dispatcher.register(Commands.literal("asresearch").requires(source -> source.hasPermission(2))
                 .then(Commands.literal("add")
                         .then(Commands.argument("research", StringArgumentType.string())
                                 .suggests((ctx, builder) -> suggestResearch(builder))
@@ -47,10 +47,6 @@ public class ResearchCommands {
         ServerPlayer player = source.getPlayer();
         Research research = ResearchUtils.getResearch(researchId);
         if (player == null) return 0;
-        if (research == null) {
-            source.sendFailure(Component.literal("Исследование не найдено!"));
-            return 0;
-        }
         if(research.isUnlocked()) return 0;
         ResearchUtils.setState(player, research, true);
         return 1;
@@ -60,10 +56,6 @@ public class ResearchCommands {
         ServerPlayer player = source.getPlayer();
         Research research = ResearchUtils.getResearch(researchId);
         if (player == null) return 0;
-        if (research == null) {
-            source.sendFailure(Component.literal("Исследование не найдено!"));
-            return 0;
-        }
         if(!research.isUnlocked()) return 0;
         ResearchUtils.setState(player, research, false);
         return 1;
@@ -73,7 +65,6 @@ public class ResearchCommands {
         ServerPlayer player = source.getPlayer();
         if (player == null) return 0;
         ResearchUtils.setStateAll(player, true);
-        source.sendSuccess(() -> Component.literal("Все исследования разблокированы!"), true);
         return 1;
     }
 
@@ -81,7 +72,6 @@ public class ResearchCommands {
         ServerPlayer player = source.getPlayer();
         if (player == null) return 0;
         ResearchUtils.setStateAll(player, false);
-        source.sendSuccess(() -> Component.literal("Прогресс успешно сброшен!"), true);
         return 1;
     }
 

@@ -28,12 +28,15 @@ jobs:
         id: get_version
         run: |
           MOD_VERSION=$(grep -oP 'mod_version\s*=\s*\K.+' gradle.properties)
+          NULL_VERSION=$(grep -oP 'nullcore_version\s*=\s*\K.+' gradle.properties)
           MC_VERSION=$(grep -oP 'minecraft_version\s*=\s*\K.+' gradle.properties)
           VERSION=$MOD_VERSION
           echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
+          echo "NULL_VERSION=$NULL_VERSION" >> $GITHUB_ENV
           echo "MC_VERSION=$MC_VERSION" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "mod_version=$MOD_VERSION" >> $GITHUB_OUTPUT
+          echo "nullcore_version=$NULL_VERSION" >> $GITHUB_OUTPUT
           echo "minecraft_version=$MC_VERSION" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -50,17 +53,6 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('/*.gradle*','/gradle-wrapper.properties') }}
-      - name: Set up libs directory
-        run: |
-          mkdir -p libs
-          chmod -R 755 libs
-          # Проверяем наличие NullCore JAR
-          if [ -f NullCore-1.21.4-0.0.3b.jar ]; then
-            mv NullCore-1.21.4-0.0.3b.jar libs/
-          fi
-
-      - name: Verify libs content
-        run: ls -la libs/
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -111,6 +103,7 @@ jobs:
 
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
+
       - name: Publish to Modrinth
         run: ./gradlew modrinth
         env:

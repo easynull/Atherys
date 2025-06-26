@@ -4,7 +4,7 @@ import com.easynull.atherys.api.essential.ArEssential;
 import com.easynull.atherys.core.ASBlockEntities;
 import com.easynull.atherys.utils.EnergyUtils;
 import com.mw.nullcore.core.blocks.Tickable;
-import com.mw.nullcore.core.blocks.entities.InventoryBlockEntity;
+import com.mw.nullcore.core.blocks.type.InventoryBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;

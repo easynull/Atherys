@@ -23,7 +23,7 @@
   "tooltip.atherys.busy": " (Busy)",
   "tooltip.atherys.linguisterium": "§7All that remains of the Ancients...",
   "message.atherys.research.unlock": "★ Entry %s successfully decrypted!",
-  "message.atherys.research.lock": "★ Entry %s successfully locked!",
+  "message.atherys.research.lock": "★ Entry %s successfully encrypted!",
 
   "difficulty.locked": "Sealed Knowledge",
   "difficulty.basic": "Basic Knowledge",
@@ -39,6 +39,7 @@
   "entry.empty": "§7The runes have been erased, but they might still be useful...",
   "entry.book": "Astralon",
   "entry.nature": "Mystical nature",
+  "entry.ancient_entries": "Ancient entries",
   "entry.aeterian_lang": "Langue of Ancients",
 
   "entry.leterum_essential": "Essential of Dark madness",
@@ -48,5 +49,5 @@
   "entry.cipher.first_leterum_source": "The Source... The Stone that absorbed all the darkness and cries of forgotten worlds, until the Dawn",
 
   "entry.runic_spring": "Runic spring",
-  "entry.cipher.runic_spring": " "
+  "entry.cipher.runic_spring": "..."
 }

@@ -26,8 +26,7 @@ public final class LinguisteriumItem extends Item {
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        ResearchUtils.setStateAll(player, true);
-        if(ASResearches.aeterianLang.isUnlocked()) LinguisteriumScreen.instance.open();
+        if(ASResearches.aeterianLang.isUnlocked() && level.isClientSide) LinguisteriumScreen.instance.open();
         return InteractionResult.SUCCESS;
     }
 }

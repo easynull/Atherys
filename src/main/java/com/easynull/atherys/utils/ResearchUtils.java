@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Player;
 public final class ResearchUtils {
 
     public static Research getResearch(String name) {
-        return ASResearches.researchById.get(name);
+        return ASResearches.researches.get(name);
     }
 
     public static boolean isUnlocked(Player player, Research research) {
@@ -24,11 +24,11 @@ public final class ResearchUtils {
         if (unlock) {
             if(rs.unResearches.contains(research)) return;
             rs.setUnlock(research);
-            player.displayClientMessage(Component.translatable("message.lethifer.research.unlock", Component.literal("[").append(research.getName()).append(Component.literal("]"))).withStyle(ChatFormatting.GOLD), true);
+            player.displayClientMessage(Component.translatable("message.atherys.research.unlock", Component.literal(String.format("[%s]", research.getName()))).withStyle(ChatFormatting.GOLD), true);
         } else {
             if(!rs.unResearches.contains(research)) return;
             rs.setLock(research);
-            player.displayClientMessage(Component.translatable("message.lethifer.research.lock", Component.literal("[").append(research.getName()).append(Component.literal("]"))).withStyle(ChatFormatting.RED), true);
+            player.displayClientMessage(Component.translatable("message.atherys.research.lock", Component.literal(String.format("[%s]", research.getName()))).withStyle(ChatFormatting.RED), true);
         }
     }
 

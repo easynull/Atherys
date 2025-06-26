@@ -14,14 +14,17 @@ tasks.named('wrapper', Wrapper).configure {
 version = mod_version
 group = mod_group_id
 
+base {
+    archivesName = project.name
+}
+
 repositories {
     mavenLocal()
-    flatDir {
-        dir 'libs'
+    mavenCentral()
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
     }
-}
-base {
-    archivesName = mod_name
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -44,7 +47,7 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    implementation 'com.mw.nullcore:nullcore-1.21.4-0.0.3b'
+    implementation "maven.modrinth:nullcore:${nullcore_version}"
 }
 
 modrinth {
@@ -70,11 +73,12 @@ tasks.withType(ProcessResources).configureEach {
             neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
-            mod_name               : mod_name,
+            mod_name               : project.name,
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+            nullcore_version        : nullcore_version
     ]
     inputs.properties replaceProperties
     filesMatching(['META-INF/neoforge.mods.toml']) {

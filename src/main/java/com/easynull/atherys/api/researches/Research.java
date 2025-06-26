@@ -67,6 +67,6 @@ public abstract class Research<O extends Research<O>> {
     private void add(O research) {
         if(research instanceof Chapter c) ASResearches.chapters.add(c);
         if(research instanceof Entry e) ASResearches.entries.add(e);
-        ASResearches.researchById.put(getID(), research);
+        ASResearches.researches.put(getID(), research);
     }
 }

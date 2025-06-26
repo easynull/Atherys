@@ -4,6 +4,8 @@ import com.easynull.atherys.Atherys;
 import com.easynull.atherys.api.AeterianLang;
 import com.easynull.atherys.api.researches.Research;
 import com.easynull.atherys.utils.ResearchUtils;
+import com.mw.nullcore.client.render.NullScreen;
+import com.mw.nullcore.client.render.NullTextField;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -12,7 +14,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.lwjgl.glfw.GLFW;
 
-public final class PageScreen extends LRScreen {
+import java.awt.*;
+
+public final class PageScreen extends NullScreen {
     public static final PageScreen instance = new PageScreen();
     final ResourceLocation bg = Atherys.locTo("gui/page");
     public String current = "";
@@ -21,7 +25,7 @@ public final class PageScreen extends LRScreen {
     Player player;
 
     public PageScreen() {
-        super(232, 196);
+        super(232, 196, 0,1);
     }
 
     public void open(Research entry, ItemStack stack, Player player) {
@@ -29,18 +33,18 @@ public final class PageScreen extends LRScreen {
         this.entry = entry;
         this.stack = stack;
         this.player = player;
-        mc.setScreen(instance);
+        mc().setScreen(instance);
     }
 
     @Override
     protected void init() {
-        addRenderableWidget(new TextField(guiLeft(), guiTop(), 280, 19, Component.empty(), text -> current = text));
+        addRenderableWidget(new NullTextField(guiLeft(), guiTop(), 280, 19, Component.empty(), text -> current = text));
     }
 
     @Override
-    public void rendering(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
-        gg.drawCenteredString(mc.font, AeterianLang.translate(entry.getCipher()), guiLeft() + 110, guiTop() - 50, 0x80000000);
-        gg.drawCenteredString(mc.font, entry.getCipher(), guiLeft() + 110, guiTop() - 25, 0x80000000);
+    protected void draw(GuiGraphics gg, int i, int i1, float v) {
+        gg.drawCenteredString(mc().font, AeterianLang.translate(entry.getCipher()), guiLeft() + 110, guiTop() - 50, 0x80000000);
+        gg.drawCenteredString(mc().font, entry.getCipher(), guiLeft() + 110, guiTop() - 25, 0x80000000);
     }
 
     @Override

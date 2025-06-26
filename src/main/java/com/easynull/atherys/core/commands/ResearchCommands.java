@@ -11,7 +11,6 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -39,7 +38,7 @@ public class ResearchCommands {
     }
 
     private static CompletableFuture<Suggestions> suggestResearch(SuggestionsBuilder builder) {
-        ASResearches.researchById.values().forEach(r -> builder.suggest(r.getID()));
+        ASResearches.researches.values().forEach(r -> builder.suggest(r.getID()));
         return builder.buildFuture();
     }
 

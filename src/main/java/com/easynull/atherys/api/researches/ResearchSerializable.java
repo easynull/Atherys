@@ -17,7 +17,7 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
     public Set<Research> unResearches = new HashSet<>();
 
     public ResearchSerializable() {
-        ASResearches.researchById.values().stream().filter(r -> r.primal).forEach(this::setUnlock);
+        ASResearches.researches.values().stream().filter(r -> r.primal).forEach(this::setUnlock);
     }
 
     public void setUnlock(Research research) {
@@ -26,7 +26,7 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
     }
 
     public void setUnlockAll() {
-        ASResearches.researchById.values().stream().filter(r -> !r.unlocked).forEach(this::setUnlock);
+        ASResearches.researches.values().stream().filter(r -> !r.unlocked).forEach(this::setUnlock);
     }
 
     public void setLock(Research research) {
@@ -35,7 +35,7 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
     }
 
     public void setLockAll() {
-        ASResearches.researchById.values().stream().filter(r -> !r.primal).forEach(this::setLock);
+        ASResearches.researches.values().stream().filter(r -> !r.primal).forEach(this::setLock);
     }
 
     @Override
@@ -46,7 +46,6 @@ public final class ResearchSerializable implements INBTSerializable<CompoundTag>
         }
         CompoundTag nbt = new CompoundTag();
         nbt.put("unlocked", unlocked);
-        System.out.print(nbt);
         return nbt;
     }
 

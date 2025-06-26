@@ -9,7 +9,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "atherys:umbrilite_seed",
+              "name": "atherys:umbrilite_crystal",
               "weight": 1,
               "conditions": [
                 {

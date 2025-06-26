@@ -23,7 +23,7 @@ public class PageItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
-        list.add(Component.translatable("entry." + stack.get(ASComponents.research)));
+        list.add(Component.literal(String.format("\"%s\"", Component.translatable("entry." + stack.get(ASComponents.research)).getString())));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PageItem extends Item {
         Research res = ResearchUtils.getResearch(stack.get(ASComponents.research));
         if (!ResearchUtils.isUnlockedParent(player, res)) return InteractionResult.FAIL;
         if (!res.isUnlocked()) {
-            if(ResearchUtils.getResearch("aeterian_lang").isUnlocked()){
+            if(ResearchUtils.getResearch("aeterian_lang").isUnlocked() && level.isClientSide){
                 PageScreen.instance.open(res, stack, player);
             }
             if (res.equals(ASResearches.aeterianLang)){

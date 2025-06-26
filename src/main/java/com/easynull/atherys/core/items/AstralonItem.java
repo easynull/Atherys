@@ -22,8 +22,8 @@ public final class AstralonItem extends Item implements ArEssential {
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        BookScreen.instance.open();
-        return InteractionResult.SUCCESS;
+        if (level.isClientSide) BookScreen.instance.open(player);
+        return super.use(level, player, hand);
     }
 
     @Override

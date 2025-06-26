@@ -81,8 +81,8 @@ public final class AeterianLang {
         return result.toString();
     }
 
-    public static String translate(Component text, boolean original) {
-        return original ? text.getString() : translate(text.getString());
+    public static String translate(String text, boolean original) {
+        return original ? text : translate(text);
     }
 
     public static Map<Character, Character> getCurrentTranslate() {

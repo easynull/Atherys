@@ -23,7 +23,7 @@
   "tooltip.atherys.busy": " (Занят)",
   "tooltip.atherys.linguisterium": "§7Все что осталось от Древних...",
   "message.atherys.research.unlock": "★ Запись %s успешно расшифрована!",
-  "message.atherys.research.lock": "★ Запись %s успешно заблокирована!",
+  "message.atherys.research.lock": "★ Запись %s успешно зашифрована!",
 
   "difficulty.locked": "Запечатанное знание",
   "difficulty.basic": "Базовое знание",
@@ -38,7 +38,8 @@
 
   "entry.empty": "§7Руны стерты, но возможно она еще пригодится...",
   "entry.book": "Астралон",
-  "entry.nature": "Природа",
+  "entry.nature": "Мистическая природа",
+  "entry.ancient_entries": "Древние записи",
   "entry.aeterian_lang": "Язык Древних",
 
   "entry.leterum_essential": "Эссенция темного безумия",
@@ -48,5 +49,5 @@
   "entry.cipher.first_leterum_source": "Источник... Камень, что впитывал весь мрак и крики забытых миров, вплоть до Рассвета",
 
   "entry.runic_spring": "Рунический родник",
-  "entry.cipher.runic_spring": " "
+  "entry.cipher.runic_spring": "..."
 }

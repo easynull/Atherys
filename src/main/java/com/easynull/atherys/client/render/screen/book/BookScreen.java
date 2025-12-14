@@ -1,10 +1,10 @@
 package com.easynull.atherys.client.render.screen.book;
 
 import com.easynull.atherys.Atherys;
-import com.easynull.atherys.core.ASResearches;
+import com.easynull.atherys.registers.AsResearches;
 import com.easynull.atherys.utils.ResearchUtils;
-import com.mw.nullcore.client.render.NullScreen;
-import com.mw.nullcore.utils.RenderUtils;
+import com.mw.nullcore.Utils;
+import com.mw.nullcore.client.screen.NullScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -13,29 +13,24 @@ import net.minecraft.world.entity.player.Player;
 import org.lwjgl.glfw.GLFW;
 
 public final class BookScreen extends NullScreen {
-    public static final BookScreen instance = new BookScreen();
-    final ResourceLocation bg = Atherys.locTo("gui/book/background");
+    final ResourceLocation bg = Atherys.path("gui/book/background");
     public static Chapter currentChap;
     private Entry currentEntry;
     int currentPage;
 
-    public BookScreen() {
+    public BookScreen(Player player) {
         super(280, 180, 0,2);
-    }
-
-    public void open(Player player) {
         ticks = 0;
-        if (currentChap == null || !ResearchUtils.isUnlocked(player, currentChap)) currentChap = ASResearches.basic;
-        mc().setScreen(this);
+        if (currentChap == null || !ResearchUtils.isUnlocked(player, currentChap)) currentChap = AsResearches.basic;
     }
 
     @Override
     public void draw(GuiGraphics gg, int mouseX, int mouseY, float pTicks) {
-        RenderUtils.drawTexture(bg, gg, guiLeft(), guiTop(), 0, 0, bgWidth, bgHeight, 512, 512);
+        Utils.Render.drawTexture(gg, bg, guiLeft(), guiTop(), 0, 0, bgWidth, bgHeight, 512, 512);
         renderTurning(gg, mouseX, mouseY);
         if (currentEntry != null) return;
-        ASResearches.chapters.forEach(chapter -> chapter.onDraw(bg, gg, guiLeft(), guiTop() - 9, mouseX, mouseY));
-        ASResearches.entries.forEach(entry -> {
+        AsResearches.chapters.forEach(chapter -> chapter.onDraw(bg, gg, guiLeft(), guiTop() - 9, mouseX, mouseY));
+        AsResearches.entries.forEach(entry -> {
             renderPage(gg, mouseX, mouseY, currentPage, 13);
             renderPage(gg, mouseX, mouseY, currentPage + 1, 150);
         });
@@ -52,11 +47,11 @@ public final class BookScreen extends NullScreen {
     private void renderTurning(GuiGraphics gg, int mouseX, int mouseY){
         int maxPages = currentEntry != null ? currentEntry.pages.size() : currentChap.pages.size();
         if (maxPages >= currentPage + 3) {
-            if (isNextButton(mouseX, mouseY)) RenderUtils.drawTexture(bg, gg, guiLeft() + 261, guiTop() + 158, 302, 48, 10, 10, 512, 512);
-            else RenderUtils.drawTexture(bg, gg, guiLeft() + 261, guiTop() + 158, 292, 48, 10, 10, 512, 512);
+            if (isNextButton(mouseX, mouseY)) Utils.Render.drawTexture(gg, bg, guiLeft() + 261, guiTop() + 158, 302, 48, 10, 10, 512, 512);
+            else Utils.Render.drawTexture(gg, bg, guiLeft() + 261, guiTop() + 158, 292, 48, 10, 10, 512, 512);
         } else if (currentEntry != null || currentPage != 0){
-            if (isBackButton(mouseX, mouseY)) RenderUtils.drawTexture(bg, gg, guiLeft() + 10, guiTop() + 158, 302, 38, 10, 10, 512, 512);
-            else RenderUtils.drawTexture(bg, gg, guiLeft() + 10, guiTop() + 158, 292, 38, 10, 10, 512, 512);
+            if (isBackButton(mouseX, mouseY)) Utils.Render.drawTexture(gg, bg, guiLeft() + 10, guiTop() + 158, 302, 38, 10, 10, 512, 512);
+            else Utils.Render.drawTexture(gg, bg, guiLeft() + 10, guiTop() + 158, 292, 38, 10, 10, 512, 512);
         }
     }
 
@@ -64,7 +59,7 @@ public final class BookScreen extends NullScreen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (button != GLFW.GLFW_MOUSE_BUTTON_LEFT) return super.mouseClicked(mouseX, mouseY, button);
         if (ticks != 1) return super.mouseClicked(mouseX, mouseY, button);
-        for (Chapter chapter : ASResearches.chapters) {
+        for (Chapter chapter : AsResearches.chapters) {
             if (chapter != currentChap && chapter.isHover(guiLeft(), guiTop() - 9, (int) mouseX, (int) mouseY)) {
                 sound(SoundEvents.BOOK_PUT);
                 currentChap = chapter;

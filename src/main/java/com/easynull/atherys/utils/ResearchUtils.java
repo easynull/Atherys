@@ -1,9 +1,9 @@
 package com.easynull.atherys.utils;
 
-import com.easynull.atherys.api.researches.Research;
-import com.easynull.atherys.api.researches.ResearchSerializable;
-import com.easynull.atherys.core.ASResearches;
-import com.easynull.atherys.core.ASAttachments;
+import com.easynull.atherys.core.researches.Research;
+import com.easynull.atherys.core.researches.ResearchSerializable;
+import com.easynull.atherys.registers.AsResearches;
+import com.easynull.atherys.registers.AsAttachments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -11,16 +11,16 @@ import net.minecraft.world.entity.player.Player;
 public final class ResearchUtils {
 
     public static Research getResearch(String name) {
-        return ASResearches.researches.get(name);
+        return AsResearches.researches.get(name);
     }
 
     public static boolean isUnlocked(Player player, Research research) {
-        ResearchSerializable rs = player.getData(ASAttachments.researches);
+        ResearchSerializable rs = player.getData(AsAttachments.researches);
         return rs.unResearches.contains(research);
     }
 
     public static void setState(Player player, Research research, boolean unlock) {
-        ResearchSerializable rs = player.getData(ASAttachments.researches);
+        ResearchSerializable rs = player.getData(AsAttachments.researches);
         if (unlock) {
             if(rs.unResearches.contains(research)) return;
             rs.setUnlock(research);
@@ -33,7 +33,7 @@ public final class ResearchUtils {
     }
 
     public static void setStateAll(Player player, boolean unlock) {
-        ResearchSerializable rs = player.getData(ASAttachments.researches);
+        ResearchSerializable rs = player.getData(AsAttachments.researches);
         if (unlock) {
             rs.setUnlockAll();
         } else {

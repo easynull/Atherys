@@ -1,10 +1,14 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
 plugins {
     id 'java-library'
-    id 'eclipse'
-    id 'idea'
-    id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.173'
+    id 'net.neoforged.moddev' version '1.0.21'
     id 'com.modrinth.minotaur' version "2.+"
+    id 'net.darkhax.curseforgegradle' version '1.1.18'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -12,31 +16,47 @@ tasks.named('wrapper', Wrapper).configure {
 }
 
 version = mod_version
-group = mod_group_id
-
-base {
-    archivesName = project.name
-}
+group = mod_group
 
 repositories {
     mavenLocal()
-    mavenCentral()
     maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-runs {
-    configureEach {
-        systemProperty 'forge.logging.markers', 'REGISTRIES'
-        systemProperty 'forge.logging.console.level', 'debug'
+base {
+    archivesName = name + "-${minecraft_version}"
+}
 
-        modSource project.sourceSets.main
+neoForge {
+    version = neo_version
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
     }
-    client {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})"
+        }
+        client {
+            client()
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
     }
 }
 
@@ -45,24 +65,34 @@ configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
-dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
-    implementation "maven.modrinth:nullcore:${nullcore_version}"
-}
-
 modrinth {
     token = System.getenv("MODRINTH_TOKEN")
     projectId = "${mod_id}"
-    versionNumber = "${mod_version}"
-    versionType = "alpha"
     uploadFile = jar
-    gameVersions = ["1.21.4"]
+    versionName = "${minecraft_version}-${mod_version}"
+    versionNumber = "${mod_version}"
+    versionType = "${releaseType}"
+    gameVersions = ["${minecraft_version}"] as Iterable<? extends String>
     loaders = ["neoforge"]
     changelog = rootProject.file("changelog.md").text
     dependencies {
-        required.project "NullCore"
-        optional.version "NullCore", "${nullcore_version}"
+        required.version "nullcore", "${nullcore_version}"
     }
+}
+
+tasks.register('curseforge', TaskPublishCurseForge) {
+    apiToken = System.getenv("CURSEFORGE_TOKEN")
+    def mainFile = upload(curseforge_id, jar)
+    mainFile.changelog = rootProject.file('changelog.md').text
+    mainFile.addGameVersion(minecraft_version)
+    mainFile.releaseType = "${releaseType}"
+    mainFile.displayName = "${minecraft_version}-${mod_version}"
+    mainFile.addModLoader("NeoForge")
+}
+
+dependencies {
+    implementation "maven.modrinth:nullcore:${nullcore_version}"
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -76,9 +106,9 @@ tasks.withType(ProcessResources).configureEach {
             mod_name               : project.name,
             mod_license            : mod_license,
             mod_version            : mod_version,
+            nullcore_version       : nullcore_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description,
-            nullcore_version        : nullcore_version
+            mod_description        : mod_description
     ]
     inputs.properties replaceProperties
     filesMatching(['META-INF/neoforge.mods.toml']) {
@@ -86,26 +116,9 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
-        }
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
 idea {
     module {
-        downloadSources = true
+        downloadSources = false
         downloadJavadoc = true
     }
 }

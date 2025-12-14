@@ -1,6 +1,6 @@
 package com.easynull.atherys.client.render.screen;
 
-import com.mw.nullcore.client.render.NullScreen;
+import com.mw.nullcore.client.screen.NullScreen;
 import net.minecraft.client.gui.GuiGraphics;
 
 public final class LinguisteriumScreen extends NullScreen {
